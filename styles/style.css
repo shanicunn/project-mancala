@@ -1,0 +1,24 @@
+.parent {
+    background-color: #f0efeb;
+}
+.child {
+
+}
+.board {
+    background-color: #cb997e;
+}
+.hole {
+    background-color: #ddbea9;
+}
+.marble_1 {
+    background-color: #a5a58d;
+}
+.marble_2 {
+    background-color: #eddcd2;
+}
+h1 {
+    color: #fff1e6;
+}
+p {
+    color: #b7b7a4;
+}
