@@ -26,7 +26,7 @@ While (player_1.holes.marbles > 0 || player_2.holes.marbles > 0) {
 
 
 ### Wireframe
-![](/.wireframe.xd)
+(/.wireframe.xd)
 
 
 ### Additional Features 
