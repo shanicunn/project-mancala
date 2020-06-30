@@ -9,7 +9,7 @@ body {
 /* Game Board */
 .board {
     display: flex;
-    margin-left: 120px;
+    margin: auto;
     background-color: #cb997e;
     height: 80vh;
     width: 80vw;
@@ -35,7 +35,8 @@ body {
 }
 /* Player 2's Well */
 .well_2 {
-    margin-top: 70px;
+    margin-top: auto;
+    margin-bottom: auto;
     margin-right: 10px;
 }
 /* Hole Container */
@@ -72,6 +73,8 @@ h1 {
     text-align: center;
     font-size: 60px;
     text-shadow: #a5a58d 1px 1px 1px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 p {
@@ -87,4 +90,17 @@ p {
     height: 10vh;
     width: 10vw;
     font-size: 25px;
+}
+.hole img {
+    height: 10vh;
+    display: block;
+    margin: auto;
+
+}
+.header {
+    display: flex;
+    justify-content: center;
+}
+.header img {
+    height: 10vh;
 }
