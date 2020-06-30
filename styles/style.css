@@ -1,24 +1,90 @@
+/* Body Styling */
+body {
+    background-color: #f0efeb;
+}
+/* Parent Styling */
 .parent {
     background-color: #f0efeb;
 }
-.child {
+/* Game Board */
+.board {
+    display: flex;
+    margin-left: 120px;
+    background-color: #cb997e;
+    height: 80vh;
+    width: 80vw;
+    border-radius: 25px;
+    border: black solid 1px;
+    justify-content: space-between;
+    align-items: center;
 
 }
-.board {
-    background-color: #cb997e;
+/* Well Class */
+.well {
+    background-color: #ddbea9;
+    border-radius: 25px;
+    border: black solid 1px;
+    height: 60vh;
+    width: 10vw;
 }
+/* Player 1's Well */
+.well_1 {
+    /* margin-top: 70px; */
+    margin-left: 10px;
+    
+}
+/* Player 2's Well */
+.well_2 {
+    margin-top: 70px;
+    margin-right: 10px;
+}
+/* Hole Container */
+.hole_child div{
+    display: flex;
+    flex-direction: row;
+}
+/* Hole Class */
 .hole {
     background-color: #ddbea9;
+    height: 15vh;
+    width: 15vh;
+    border-radius: 50px;
+    border: black solid 1px;
+    margin: 20px;
 }
+.player_1.hole {
+    align-self: center;
+}
+.player_2.hole {
+    align-self: center;
+}
+/* Marble Color Variations */
 .marble_1 {
     background-color: #a5a58d;
 }
+
 .marble_2 {
     background-color: #eddcd2;
 }
+/* Text Styling */
 h1 {
     color: #fff1e6;
+    text-align: center;
+    font-size: 60px;
+    text-shadow: #a5a58d 1px 1px 1px;
 }
+
 p {
     color: #b7b7a4;
+}
+/* Button Styling */
+.play {
+    background-color: #ddbea9;
+    margin-top: 10px;
+    margin-left: 45%;
+    border-radius: 25px;
+    color: #a5a58d;
+    height: 10vh;
+    width: 10vw;
+    font-size: 25px;
 }
