@@ -72,15 +72,16 @@ h1 {
     color: #fff1e6;
     text-align: center;
     font-size: 60px;
-    text-shadow: #a5a58d 1px 1px 1px;
+    text-shadow: #a5a58d 1px 3px 5px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
-p {
+h3 {
     color: #b7b7a4;
+    font-size: 20px;
 }
-/* Button Styling */
+/* Start Button Styling */
 .play {
     background-color: #ddbea9;
     margin-top: 10px;
@@ -90,17 +91,29 @@ p {
     height: 10vh;
     width: 10vw;
     font-size: 25px;
+    text-shadow: black 1px 1px 1px;
 }
+/* Marble Cluster Image */
 .hole img {
     height: 10vh;
     display: block;
     margin: auto;
 
 }
+/* Header Styling */
 .header {
     display: flex;
     justify-content: center;
 }
 .header img {
     height: 10vh;
+}
+/* Sweet Alert Button Styling */
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 2px;
+    background-color: #b7b7a4;;
+    font-size: 12px;
+    border: 1px solid #cb997e;;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
