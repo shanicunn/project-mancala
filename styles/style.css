@@ -52,21 +52,21 @@ body {
     border-radius: 50px;
     border: black solid 1px;
     margin: 20px;
+    /* overflow: hidden; */
 }
+/* .hole::after{
+    content: '';
+    display: table;
+    clear: both;
+} */
+
 .player_1.hole {
     align-self: center;
 }
 .player_2.hole {
     align-self: center;
 }
-/* Marble Color Variations */
-.marble_1 {
-    background-color: #a5a58d;
-}
 
-.marble_2 {
-    background-color: #eddcd2;
-}
 /* Text Styling */
 h1 {
     color: #fff1e6;
@@ -77,9 +77,10 @@ h1 {
     margin-bottom: 0px;
 }
 
-h3 {
+.dip h3 {
     color: #b7b7a4;
-    font-size: 20px;
+    text-shadow: black 1px 1px;
+    font-size: 40px;
 }
 /* Start Button Styling */
 .play {
@@ -93,12 +94,44 @@ h3 {
     font-size: 25px;
     text-shadow: black 1px 1px 1px;
 }
-/* Marble Cluster Image */
-.hole img {
+/* Marble Image */
+.marble {
+    
+    /* object-fit: contain; */
     height: 10vh;
-    display: block;
-    margin: auto;
-
+}
+/* Beige */
+.marble-top-left {
+    float: left;
+    margin-right: -100%;
+    padding-top: 1%;
+    position: relative;
+    z-index: 1;
+}
+/* Forest */
+.marble-top-right {
+    float: left;
+    margin-left: 70%;
+    margin-right: -100%;
+    padding-top: 15%;
+    position: relative;
+    z-index: 1;
+}
+/* Tan */
+.marble-bottom-right {
+    float: left;
+    margin-right: -100%;
+    padding-top: 15%;
+    position: relative;
+    z-index: 1;
+}
+/* Olive */
+.marble-bottom-left {
+    float: left;
+    margin-right: -100%;
+    padding-top: 20%;
+    position: relative;
+    z-index: 1;
 }
 /* Header Styling */
 .header {
