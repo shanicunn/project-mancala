@@ -15,52 +15,52 @@
             <h1>Welcome to Mancala!</h1>
             <img src="/assets/marble_cluster.png">
         </header>
-        
+
         <!-- Entire Game Board -->
         <div class="child board">
             <!-- Player 1 Well -->
-            <div class="board_child dip well well_1"> </div>
+            <div class="board_child player_1 dip well well_1" id="dip_7"> </div>
 
             <div class="board_child hole_child">
                 <!-- Player 1 Holes -->
                 <div class="player_1 holes">
-                    <div class="player_1 dip hole hole_1">
+                    <div class="player_1 dip hole hole_1" id="dip_6">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_1 dip hole hole_2">
+                    <div class="player_1 dip hole hole_2" id="dip_5">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_1 dip hole hole_3">
+                    <div class="player_1 dip hole hole_3" id="dip_4">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_1 dip hole hole_4">
+                    <div class="player_1 dip hole hole_4" id="dip_3">
                         <img src="/assets/marble_cluster.png"></div>
-                    <div class="player_1 dip hole hole_5">
+                    <div class="player_1 dip hole hole_5" id="dip_2">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_1 dip hole hole_6">
+                    <div class="player_1 dip hole hole_6" id="dip_1">
                         <img src="/assets/marble_cluster.png">
                     </div>
                 </div>
 
                 <!-- Player 2 Holes -->
                 <div class="player_2 holes">
-                    <div class="player_2 dip hole hole_1">
+                    <div class="player_2 dip hole hole_1" id="dip_8">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_2 dip hole hole_2">
+                    <div class="player_2 dip hole hole_2" id="dip_9">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_2 dip hole hole_3">
+                    <div class="player_2 dip hole hole_3" id="dip_10">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_2 dip hole hole_4">
+                    <div class="player_2 dip hole hole_4" id="dip_11">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_2 dip hole hole_5">
+                    <div class="player_2 dip hole hole_5" id="dip_12">
                         <img src="/assets/marble_cluster.png">
                     </div>
-                    <div class="player_2 dip hole hole_6">
+                    <div class="player_2 dip hole hole_6" id="dip_13">
                         <img src="/assets/marble_cluster.png">
                     </div>
                 </div>
@@ -68,13 +68,14 @@
             </div>
 
             <!-- Player 2 Well -->
-            <div class="player_1 dip well well_2"> </div>
+            <div class="player_2 dip well well_2" id="dip_14"> </div>
         </div>
         <button id="play" class="play">Play Game</button>
         <div class="announcement" id="announcement"></div>
     </div>
 
     <script src="/scripts/app.js"></script>
+    
     <!-- Library from Sweet Alert for more aesthetically pleasing  modal -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
