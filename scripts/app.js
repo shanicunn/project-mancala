@@ -1,154 +1,205 @@
 ////////////////////////////////////////////////////////////////
-//                          MANCALA 
+//**************************MANCALA***************************** 
 ////////////////////////////////////////////////////////////////
+// import swal from 'sweetalert';
+// require('./bootstrap');
+
+// window.Vue = require('vue');
+
+// import VModal from 'vue-js-modal'
+// window.swal = require('sweetalert2') // added here
+
+// Vue.use(VModal)
 
 ////////////////////////////
 // Player Objects
 ////////////////////////////
-let player_1 = {
-    "holes": [{
-            "hole_1": "hole_1",
-            "marbles": 0,
-        },
-        {
-            "hole_2": "hole_2",
-            "marbles": 0,
-        },
-        {
-            "hole_3": "hole_3",
-            "marbles": 0,
-        },
-        {
-            "hole_4": "hole_4",
-            "marbles": 0,
-        },
-        {
-            "hole_5": "hole_5",
-            "marbles": 0,
-        },
-        {
-            "hole_6": "hole_6",
-            "marbles": 0,
-        },
-        {
-            "hole_7": "well",
-            "marbles": 0,
-        },
-    ],
-    "well": 0,
-};
-let player_2 = {
-    "holes": [{
-            "hole_1": "hole_1",
-            "marbles": 0,
-        },
-        {
-            "hole_2": "hole_2",
-            "marbles": 0,
-        },
-        {
-            "hole_3": "hole_3",
-            "marbles": 0,
-        },
-        {
-            "hole_4": "hole_4",
-            "marbles": 0,
-        },
-        {
-            "hole_5": "hole_5",
-            "marbles": 0,
-        },
-        {
-            "hole_6": "hole_6",
-            "marbles": 0,
-        },
-        {
-            "hole_7": "well",
-            "marbles": 0,
-        },
-    ],
-    "well": 0,
-};
+// let player_1 = {
+//     "holes": [{
+//             "hole_1": "hole_1",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_2": "hole_2",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_3": "hole_3",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_4": "hole_4",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_5": "hole_5",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_6": "hole_6",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_7": "well",
+//             "marbles": 0,
+//         },
+//     ],
+//     "well": 0,
+// };
+// let player_2 = {
+//     "holes": [{
+//             "hole_1": "hole_1",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_2": "hole_2",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_3": "hole_3",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_4": "hole_4",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_5": "hole_5",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_6": "hole_6",
+//             "marbles": 0,
+//         },
+//         {
+//             "hole_7": "well",
+//             "marbles": 0,
+//         },
+//     ],
+//     "well": 0,
+// };
 
 //////////////////////////////
-// Cloned Objects to use/manipulate values
+// Global Variables
 ////////////////////////////
-let clonePlayer_1 = Object.assign({}, player_1);
-let clonePlayer_2 = Object.assign({}, player_2);
+//let clonePlayer_1 = Object.assign({}, player_1);
+//let clonePlayer_2 = Object.assign({}, player_2);
+let marbles = 24;
+let player1Marbles = marbles;
+let player2Marbles = marbles;
+let playerTurn = null;
+let remMarbles = null;
+// Hole turn starts from
+let turnStart = null;
+// Hole turn ends on
+let turnEnd = null;
+// Row turn ends on
+let turnRow = null;
 
 ////////////////////////////
 // Game Play Functions
 ////////////////////////////
-let play = (callback) => {
-    // Add 4 marbles to each hole
-    clonePlayer_1.holes.marbles = 4;
-    clonePlayer_2.holes.marbles = 4;
-    // Choose a hole on click
-
-    // Disperse marbles into holes and well
-    callback();
-}
 
 // First Loop of Play
-function loopTurn1(e) {
-    // Remove marbles from the first hole clicked
-    hole_clicked_first.holes.marbles = 0;
-    for (hole in holes) {
-        // Add a marble to each hole clicked after the first one
-        hole_clicked.holes.marbles++;
-        return console.log();
+function startTurn(e) {
+    // Store the clicked hole
+    let clicked = e.currentTarget;
+    console.log(clicked);
+    // Store amount of marbles in hole
+    remMarbles = clicked.children().children().length;
+    console.log("Remaining marbles:", remMarbles);
+    // Store the location of the click
+    turnStart = clicked.index();
+    if (clicked.hasClass('player_1')) {
+        player1Marbles -= remMarbles;
+    } else {
+        player2Marbles -= remMarbles;
     }
-    return console.log('Event: ' + e.type);
+
+    disperseMarbles(e);
 };
-// Second Loop of Play
-function loopTurn2(callback) {
-    // Repeat loopTurn1 til marble in hole is 1
-    while (holes.marbles != 1) {
-        return callback();
+function disperseMarbles(e) {
+    let clicked = e.currentTarget;
+    clicked.children().remove();
+    moveMarbles();
+}
+function moveMarbles() {
+    let count = null;
+    if (playerTurn === 1) {
+        turnRow = 1;
+        if (turnStart <= remMarbles) {
+            count = 0;
+        } else {
+            count = turnStart - remMarbles;
+        };
+        for (i = turnStart - 1; i >= count; i--) {
+            // CHECKMARBLELAYER
+            player1Marbles ++;
+            remMarbles --;
+            // Last hole a marble was added to
+            turnEnd = i;
+        }
+    } else {
+        turnRow = 2;
+        if (5 - turnStart <= remMarbles) {
+            count = 5;
+        } else {
+            count = turnStart + remMarbles;
+        ;}
+        for (i = turnStart + 1; i <= count; i++) {
+            // CHECKMARBLELAYER
+            player2Marbles ++;
+            remMarbles--;
+            // Last hole a marble was added to
+            turnEnd = i;
+        }
     }
-};
+}
+
+
 
 ////////////////////////////
 // Game Play
 ////////////////////////////
-let marbleHoles = document.querySelector('.dip');
-let wholeGame = () => {
+
+let wholeGame = (e) => {
     // While neither player has 0 or less marbles
-    while (clonePlayer_1.holes.marbles > 0 || clonePlayer_2.holes.marbles > 0) {
-        let player_count = 1;
+    while (playerTurn < 10)
+    // (clonePlayer_1.holes.marbles > 0 || clonePlayer_2.holes.marbles > 0) 
+    {
         // If player count is odd it is player 1's turn
-        if (player_count != 2 % 2) {
+        if (playerTurn != 2 % 2) {
             announcement.innerHTML = '<h3>Player 1</h3>';
             swal({
                 text: "It's player 1's turn!"
             });
             console.log("It is player 1's turn");
-            marbleHoles.addEventListener('click', player_1.play(loopTurn2));
-
+            let marbleHoles = document.getElementsByClassName("dip");
+            marbleHoles.addEventListener('click', startTurn(e));
             // Add to player count after every turn
-            player_count++;
+            playerTurn ++;
         } else {
             // If player count is even it is player 2's turn
             announcement.innerHTML = '<h3>Player 1</h3>';
             swal({
-                text: "It's player 1's turn!"
+                text: "It's player 2's turn!"
             });
             console.log("It is player 2's turn");
-            marbleHoles.addEventListener('click', player_2.play(loopTurn2));
-            // player_2.play(loopTurn2);
-            player_count++;
+            marbleHoles.addEventListener('click', startTurn(e));
+           
+            playerTurn ++;
         };
     };
 };
     // If Player 1 has no marbles they win
-    if (clonePlayer_1.holes.marbles >= 0) {
-        // Sweet Alert syntax
-        swal("WINNER!", "Player 1, You Win!", "success");
-        console.log("Player 1 wins");
-    } else {
-        swal("WINNER!", "Player 2,You Win!", "success");
-        console.log("Player 2 wins");
-    };
+    // if (marbles >= 0) {
+    //     // Sweet Alert syntax
+    //     swal("WINNER!", "Player 1, You Win!", "success");
+    //     console.log("Player 1 wins");
+    //   } else {
+    //     swal("WINNER!", "Player 2, You Win!", "success");
+    //     console.log("Player 2 wins");
+    // };
 
     ////////////////////////////
     // End or play again
@@ -161,14 +212,14 @@ let wholeGame = () => {
     //             text: "Yes",
     //             value: true,
     //             visible: true,
-    //             className: "",
+    //             className: "confirm",
     //             closeModal: true
     //         },
     //         cancel: {
     //             text: "No",
     //             value: false,
     //             visible: true,
-    //             className: "",
+    //             className: "cancel",
     //             closeModal: true,
     //         },
     //     },
