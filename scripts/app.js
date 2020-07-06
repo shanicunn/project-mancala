@@ -101,7 +101,7 @@ let turnRow = null;
 ////////////////////////////
 
 // First Loop of Play
-function startTurn(e) {
+function start(e) {
     // Store the clicked hole
     let clicked = e.currentTarget;
     console.log(clicked);
@@ -120,12 +120,14 @@ function startTurn(e) {
 };
 function disperseMarbles(e) {
     let clicked = e.currentTarget;
-    clicked.children().remove();
-    moveMarbles();
+    // Remove children elements from clicked element - marbles
+    clicked.children(".marbles").remove();
+    console.log("Hole clicked:", clicked);
+    moveFirstRowOfMarbles();
 }
-function moveMarbles() {
+function moveFirstRowOfMarbles() {
     let count = null;
-    if (playerTurn === 1) {
+    if (playerTurn != 2 % 2) {
         turnRow = 1;
         if (turnStart <= remMarbles) {
             count = 0;
@@ -152,9 +154,33 @@ function moveMarbles() {
             remMarbles--;
             // Last hole a marble was added to
             turnEnd = i;
-        }
+        };
+    };
+    marblesToWells();
+};
+function marblesToWells () {
+    if (remMarbles > 0 && playerTurn != 2 % 2) {
+        turnRow = 1;
+        player1Marbles ++;
+        remMarbles --;
+        turnEnd = null;
+        moveSecondRowOfMarbles();
+    } else {
+        turnRow = 1;
+        player2Marbles ++;
+        remMarbles --;
+        turnEnd = null;
+        moveSecondRowOfMarbles();
+    }
+};
+function moveSecondRowOfMarbles () {
+    let count = null;
+    if (remMarbles > 0 && playerTurn != 2 % 2) {
+        turnRow = 2;
+        
     }
 }
+
 
 
 
@@ -175,7 +201,7 @@ let wholeGame = (e) => {
             });
             console.log("It is player 1's turn");
             let marbleHoles = document.getElementsByClassName("dip");
-            marbleHoles.addEventListener('click', startTurn(e));
+            marbleHoles.addEventListener('click', start(e));
             // Add to player count after every turn
             playerTurn ++;
         } else {
@@ -185,7 +211,7 @@ let wholeGame = (e) => {
                 text: "It's player 2's turn!"
             });
             console.log("It is player 2's turn");
-            marbleHoles.addEventListener('click', startTurn(e));
+            marbleHoles.addEventListener('click', Turn(e));
            
             playerTurn ++;
         };
