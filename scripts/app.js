@@ -98,7 +98,8 @@ $(() => {
             remMarbles--;
             turnEnd = null;
             document.querySelector(".player_1.well").textContent ++;
-            console.log("Player 1's well:", (document.querySelector(".player_1.well")++));
+            let $wellMarbles = document.querySelector(".player_1.well").textContent;
+            console.log("Player 1's well:", $wellMarbles);
             moveSecondRowOfMarbles();
         } // Player 2's turn
         else if (remMarbles > 0 && playerTurn === 2 % 2) {
@@ -106,7 +107,8 @@ $(() => {
             player2Marbles++;
             remMarbles--;
             turnEnd = null;
-            $wellMarbles = document.querySelector(".player_2.well").textContent ++;
+            document.querySelector(".player_2.well").textContent ++;
+            let $wellMarbles = document.querySelector(".player_2.well").textContent;
             console.log("Player 2's well:", $wellMarbles);
             moveSecondRowOfMarbles();
         } else {
@@ -119,15 +121,19 @@ $(() => {
         let count = null;
         if (remMarbles > 0 && playerTurn != 2 % 2) {
             turnRow = 2;
+            // If there's more marbles left than holes in the row
             if (6 < remMarbles) {
                 count = 6;
             } else {
                 count = remMarbles;
             }
+            let $hole = document.querySelectorAll('.player_2.hole');
             for (i = 0; i < count; i++) {
                 player2Marbles++;
                 remMarbles--;
                 turnEnd = i;
+                $hole[i].textContent ++;
+                
             };
             moveFirstRowOfMarbles2();
         } else {
@@ -137,10 +143,12 @@ $(() => {
             } else {
                 count = 6 - remMarbles;
             }
+            let $hole = document.querySelectorAll('.player_1.hole');
             for (i = 5; i >= count; i--) {
                 player1Marbles++;
                 remMarbles--;
                 turnEnd = i;
+                $hole[i].textContent ++;
             }
             moveFirstRowOfMarbles2();
         };
@@ -155,10 +163,12 @@ $(() => {
             } else {
                 count = 6 - remMarbles;
             }
+            let $hole = document.querySelectorAll('.player_1.hole');
             for (i = 5; i >= count; i--) {
                 player1Marbles++;
                 remMarbles--;
                 turnEnd = i;
+                $hole[i].textContent ++;
             };
         } else {
             turnRow = 2;
@@ -167,10 +177,12 @@ $(() => {
             } else {
                 count = remMarbles;
             }
+            let $hole = document.querySelectorAll('.player_2.hole');
             for (i = 0; i < count; i++) {
                 player2Marbles++;
                 remMarbles--;
                 turnEnd = i;
+                $hole[i].textContent ++;
             };
         };
         marblesToWells()
@@ -222,8 +234,6 @@ $(() => {
                 console.log("Player 1's turn begins");
                 $('.player_1.hole').on('click', start);
                 $('.player_2.hole').off('click', start);
-                // Add to player count after every turn
-                console.log("Player 1's turn ends");
             } else {
                 // If player count is even it is player 2's turn
                 document.getElementById('announcement').innerHTML = '<h3>Player 2</h3>';
@@ -233,7 +243,6 @@ $(() => {
                 console.log("Player 2's turn begins");
                 $('.player_2.hole').on('click', start);
                 $('.player_1.hole').off('click', start);
-                console.log("Player 2's turn ends");
             };
         } // If Player 1 has the most marbles they win
         else if (player1Marbles > player2Marbles) {
