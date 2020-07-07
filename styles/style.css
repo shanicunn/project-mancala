@@ -54,12 +54,6 @@ body {
     margin: 20px;
     /* overflow: hidden; */
 }
-/* .hole::after{
-    content: '';
-    display: table;
-    clear: both;
-} */
-
 .player_1.hole {
     align-self: center;
 }
@@ -149,4 +143,28 @@ h1 {
     font-size: 12px;
     border: 1px solid #cb997e;;
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+.player_1.hole,::before {
+    color: #b7b7a4;
+    text-shadow: black 1px 1px;
+    font-size: 40px;
+    padding-left: 3%;
+}
+.player_2.hole,::before {
+    color: #b7b7a4;
+    text-shadow: black 1px 1px;
+    font-size: 40px;
+    padding-left: 3%;
+}
+.player_1.well,::before {
+    color: #b7b7a4;
+    text-shadow: black 1px 1px;
+    font-size: 40px;
+    padding-left: 3%;
+}
+.player_2.well,::before {
+    color: #b7b7a4;
+    text-shadow: black 1px 1px;
+    font-size: 40px;
+    padding-left: 3%;
 }
