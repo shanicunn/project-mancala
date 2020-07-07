@@ -27,7 +27,7 @@ While (player_1.holes.marbles > 0 || player_2.holes.marbles > 0) {
 
 ### Wireframe
 Image description
-![alt text]()
+![wireframe](/wireframe.xd)
 
 
 
@@ -35,3 +35,5 @@ Image description
 Animations onclick of holes
 
 ### Timeline 
+
+
