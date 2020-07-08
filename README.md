@@ -24,7 +24,7 @@
 ![wireframe](https://github.com/shanicunn/mancala-proposal/blob/master/wireframe.png)
 
 ### Published Link
-![published game](link)
+![published game](https://fervent-euler-438795.netlify.app/)
 
 ### Additional Features 
 Animations onclick of holes
