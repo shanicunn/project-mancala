@@ -47,7 +47,7 @@ $(() => {
             let current = player1Marbles - remMarbles;
             // Log available marbles for player 1
             console.log("Player 1 marbles:", current);
-            //let setZero = $("#marbles_1").text();
+            $("#marbles_1").text("0");
             // Find amount of marbles in the clicked hole and log
             remMarbles = parseInt($clicked.children('h3').text());
             console.log("Marbles in clicked hole:", remMarbles);
@@ -55,23 +55,14 @@ $(() => {
             let current = player2Marbles - remMarbles;
             console.log("Player 2 marbles:", current);
         }
-        //disperseMarbles(e);
         moveFirstRowOfMarbles();
     };
-
-    // function disperseMarbles(e) {
-    //     let $clicked = $(e.currentTarget);
-    //     // Remove marbles from hole clicked
-    //     let current = remMarbles - remMarbles;
-    //     //$clicked.children('h3').innerHTML = "0";
-    //     moveFirstRowOfMarbles();
-    // };
 
     function moveFirstRowOfMarbles() {
         let count = null;
         console.log("Move first row of marbles");
         // Player 1
-        if (playerTurn % 2 == 1) {
+        if (playerTurn % 2 === 1) {
             // Start on top row
             turnRow = 1;
             if (turnStart <= remMarbles) {
@@ -82,9 +73,9 @@ $(() => {
             // Loop to add one marble to each hole on top row
             let $hole = document.querySelectorAll('.player_1.hole');
             for (i = turnStart - 1; i >= count; i--) {
-                player1Marbles ++;
+                player1Marbles++;
                 remMarbles--;
-                $hole[i].textContent ++;
+                $hole[i].textContent++;
                 // Last hole a marble was added to
                 turnEnd = i;
             };
@@ -102,7 +93,7 @@ $(() => {
             for (i = turnStart + 1; i <= count; i++) {
                 player2Marbles++;
                 remMarbles--;
-                $hole[i].textContent ++;
+                $hole[i].textContent++;
                 // Last hole a marble was added to
                 turnEnd = i;
             };
@@ -112,27 +103,27 @@ $(() => {
 
     function marblesToWells() {
         // Player 1's Turn
-        if (remMarbles > 0 && playerTurn % 2 != 0) {
+        if (remMarbles > 0 && playerTurn % 2 === 1) {
             turnRow = 1;
             player1Marbles++;
             remMarbles--;
-            document.querySelector(".player_1.well").textContent ++;
+            document.querySelector(".player_1.well").textContent++;
             $wellMarbles1 = document.querySelector(".player_1.well").textContent;
             console.log("Player 1's well:", $wellMarbles1);
             moveSecondRowOfMarbles();
         } // Player 2's turn
-        else if (remMarbles > 0 && playerTurn % 2 == 0) {
+        else if (remMarbles > 0 && playerTurn % 2 === 0) {
             turnRow = 2;
             player2Marbles++;
             remMarbles--;
-            document.querySelector(".player_2.well").textContent ++;
+            document.querySelector(".player_2.well").textContent++;
             $wellMarbles2 = document.querySelector(".player_2.well").textContent;
             console.log("Player 2's well:", $wellMarbles2);
             moveSecondRowOfMarbles();
         } else {
             // Do nothing
         };
-        
+
     };
 
     function moveSecondRowOfMarbles() {
@@ -150,8 +141,8 @@ $(() => {
                 player2Marbles++;
                 remMarbles--;
                 turnEnd = i;
-                $hole[i].textContent ++;
-                
+                $hole[i].textContent++;
+
             };
             moveFirstRowOfMarbles2();
         } else {
@@ -166,7 +157,7 @@ $(() => {
                 player1Marbles++;
                 remMarbles--;
                 turnEnd = i;
-                $hole[i].textContent ++;
+                $hole[i].textContent++;
             }
             moveFirstRowOfMarbles2();
         };
@@ -174,7 +165,7 @@ $(() => {
 
     function moveFirstRowOfMarbles2() {
         let count = null;
-        if (remMarbles > 0 &&  playerTurn % 2 != 0) {
+        if (remMarbles > 0 && playerTurn % 2 != 0) {
             turnRow = 1;
             if (6 < remMarbles) {
                 count = 0;
@@ -186,7 +177,7 @@ $(() => {
                 player1Marbles++;
                 remMarbles--;
                 turnEnd = i;
-                $hole[i].textContent ++;
+                $hole[i].textContent++;
             };
         } else {
             turnRow = 2;
@@ -200,69 +191,71 @@ $(() => {
                 player2Marbles++;
                 remMarbles--;
                 turnEnd = i;
-                $hole[i].textContent ++;
+                $hole[i].textContent++;
             };
         };
         marblesToWells()
     };
-// See if Player 1 holes are all empty
-let player1Holes = () => {
-    for (i = 0; i < $('.player_1.hole').length; i++) {
-        if ($('player_1.hole').text() == "0") {
-            return false;
-        } else {
-            return true;
+    // See if Player 1 holes are all empty
+    let player1Holes = () => {
+        for (i = 0; i < $('.player_1.hole').length; i++) {
+            if ($('player_1.hole').text() == "0") {
+                return false;
+            } else {
+                return true;
+            }
         }
-    }
-};
-// See if Player 2 holes are all empty
-let player2Holes = () => {
-    for (i = 0; i < $('.player_2.hole').length; i++) {
-        if ($('player_2.hole').text() == "0") {
-            return false;
-        } else {
-            return true;
+    };
+    // See if Player 2 holes are all empty
+    let player2Holes = () => {
+        for (i = 0; i < $('.player_2.hole').length; i++) {
+            if ($('player_2.hole').text() == "0") {
+                return false;
+            } else {
+                return true;
+            }
         }
-    }
-};
+    };
 
     ////////////////////////////
     // Game Play
     ////////////////////////////
-    let welcome = 
-    () => {
-        swal({
-            title: "Welcome!",
-            text: "Let's Play Mancala!",
-            buttons: {
-                confirm: {
-                    text: "Sure",
-                    value: true,
-                    visible: true,
-                    className: "confirm",
-                    closeModal: true
+    let welcome =
+        () => {
+            swal({
+                title: "Welcome!",
+                text: "Let's Play Mancala!",
+                buttons: {
+                    confirm: {
+                        text: "Sure",
+                        value: true,
+                        visible: true,
+                        className: "confirm",
+                        closeModal: true
+                    },
+                    cancel: {
+                        text: "Nope",
+                        value: false,
+                        visible: true,
+                        className: "cancel",
+                        closeModal: true,
+                    },
                 },
-                cancel: {
-                    text: "Nope",
-                    value: false,
-                    visible: true,
-                    className: "cancel",
-                    closeModal: true,
-                },
-            },
-        }) .then((value) => {
-            if (value === true) {
-                wholeGame();
-            } else {
-                swal({text: "Maybe Next Time Then ;-)"});
-            }
+            }).then((value) => {
+                if (value === true) {
+                    wholeGame();
+                } else {
+                    swal({
+                        text: "Maybe Next Time Then ;-)"
+                    });
+                }
 
-        });
-    };
+            });
+        };
     let wholeGame = () => {
-        // While neither player has 0 or less marbles
-        //while (player1Holes() || player2Holes()) {
-            // If player count is odd it is player 1's turn
+        // While neither player has 0 in all holes
+        if (player1Holes() || player2Holes()) {
+
             if (playerTurn % 2 != 0) {
                 document.getElementById('announcement').innerHTML = '<h3>Player 1</h3>';
                 swal({
@@ -271,9 +264,9 @@ let player2Holes = () => {
                 console.log("Player 1's turn begins");
                 $('.player_1.hole').on('click', start);
                 $('.player_2.hole').off('click', start);
-                playerTurn ++;
+
             } else {
-                // If player count is even it is player 2's turn
+
                 document.getElementById('announcement').innerHTML = '<h3>Player 2</h3>';
                 swal({
                     text: "It's player 2's turn!"
@@ -281,7 +274,7 @@ let player2Holes = () => {
                 console.log("Player 2's turn begins");
                 $('.player_2.hole').on('click', start);
                 $('.player_1.hole').off('click', start);
-                playerTurn ++;
+
             };
         } // If Player 1 has the most marbles they win
         if ($wellMarbles1 > $wellMarbles2) {
@@ -295,7 +288,7 @@ let player2Holes = () => {
             swal("Tie!", "It is a tie!", "success");
             console.log("Players drew a tie");
         };
-   };
+    };
     ////////////////////////////
     // End or play again
     ////////////////////////////
@@ -332,6 +325,6 @@ let player2Holes = () => {
     //////////////////////////////
     // Events
     //////////////////////////////
-    welcome(); 
-    
+    welcome();
+
 })
