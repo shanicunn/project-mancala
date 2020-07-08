@@ -89,44 +89,44 @@ h1 {
     text-shadow: black 1px 1px 1px;
 }
 /* Marble Image */
-.marble {
+/* .marble {
     
-    /* object-fit: contain; */
+    object-fit: contain;
     height: 10vh;
-}
+} */
 /* Beige */
-.marble-top-left {
+/* .marble-top-left {
     float: left;
     margin-right: -100%;
     padding-top: 1%;
     position: relative;
     z-index: 1;
-}
+} */
 /* Forest */
-.marble-top-right {
+/* .marble-top-right {
     float: left;
     margin-left: 70%;
     margin-right: -100%;
     padding-top: 15%;
     position: relative;
     z-index: 1;
-}
+} */
 /* Tan */
-.marble-bottom-right {
+/* .marble-bottom-right {
     float: left;
     margin-right: -100%;
     padding-top: 15%;
     position: relative;
     z-index: 1;
-}
+} */
 /* Olive */
-.marble-bottom-left {
+/* .marble-bottom-left {
     float: left;
     margin-right: -100%;
     padding-top: 20%;
     position: relative;
     z-index: 1;
-}
+} */
 /* Header Styling */
 .header {
     display: flex;
