@@ -57,7 +57,7 @@ $(() => {
         }
         moveFirstRowOfMarbles();
     };
-
+    // Move player's row of marbles
     function moveFirstRowOfMarbles() {
         let count = null;
         console.log("Move first row of marbles");
@@ -100,7 +100,7 @@ $(() => {
         };
         marblesToWells();
     };
-
+    // Moving the marbles into mancalas
     function marblesToWells() {
         // Player 1's Turn
         if (remMarbles > 0 && playerTurn % 2 === 1) {
@@ -125,7 +125,7 @@ $(() => {
         };
 
     };
-
+    // Moving marbles to opponent's rows
     function moveSecondRowOfMarbles() {
         let count = null;
         if (remMarbles > 0 && playerTurn % 2 != 0) {
@@ -162,7 +162,7 @@ $(() => {
             moveFirstRowOfMarbles2();
         };
     };
-
+    // If necesessary, move marbles along player's row again 
     function moveFirstRowOfMarbles2() {
         let count = null;
         if (remMarbles > 0 && playerTurn % 2 != 0) {
