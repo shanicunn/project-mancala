@@ -7,10 +7,13 @@ $(() => {
     //////////////////////////////
     // Global Variables
     ////////////////////////////
+    // Total marbles on the board
     let marbles = 24;
     let player1Marbles = marbles;
     let player2Marbles = marbles;
-    let playerTurn = 2;
+    // Counter for player turns
+    let playerTurn = 1;
+    // Remaining marbles
     let remMarbles = null;
     // Hole turn starts from
     let turnStart = null;
@@ -18,6 +21,8 @@ $(() => {
     let turnEnd = null;
     // Row turn ends on
     let turnRow = null;
+    let $wellMarbles1 = null;
+    let $wellMarbles2 = null;
 
     ////////////////////////////
     // Game Play Functions
@@ -27,27 +32,28 @@ $(() => {
     function start(e) {
         // Store the clicked hole
         let $clicked = $(e.currentTarget);
+        // Log hole clicked
         console.log($clicked);
+        // Log current player count
         console.log("Player turn:", playerTurn);
         // Store amount of marbles in hole
         // https://stackoverflow.com/questions/26319183/how-to-get-number-inside-a-div-with-jquery
         remMarbles = parseInt($clicked.children('h3').text());
+        // Log the remaining marbles not in wells
         console.log("Remaining marbles:", remMarbles);
         // Store the location of the click
         turnStart = $clicked.index();
         if ($clicked.hasClass('player_1')) {
             let current = player1Marbles - remMarbles;
+            // Log available marbles for player 1
             console.log("Player 1 marbles:", current);
             //let setZero = $("#marbles_1").text();
+            // Find amount of marbles in the clicked hole and log
             remMarbles = parseInt($clicked.children('h3').text());
             console.log("Marbles in clicked hole:", remMarbles);
-            
-            console.log("Player turn:", playerTurn);
         } else {
             let current = player2Marbles - remMarbles;
             console.log("Player 2 marbles:", current);
-            
-            console.log("Player turn:", playerTurn);
         }
         //disperseMarbles(e);
         moveFirstRowOfMarbles();
@@ -64,13 +70,16 @@ $(() => {
     function moveFirstRowOfMarbles() {
         let count = null;
         console.log("Move first row of marbles");
-        if (playerTurn != 2 % 2) {
+        // Player 1
+        if (playerTurn % 2 == 1) {
+            // Start on top row
             turnRow = 1;
             if (turnStart <= remMarbles) {
                 count = 0;
             } else {
                 count = turnStart - remMarbles;
             };
+            // Loop to add one marble to each hole on top row
             let $hole = document.querySelectorAll('.player_1.hole');
             for (i = turnStart - 1; i >= count; i--) {
                 player1Marbles ++;
@@ -80,12 +89,15 @@ $(() => {
                 turnEnd = i;
             };
         } else {
+            // If player 2
+            // Start on bottom row
             turnRow = 2;
             if (5 - turnStart <= remMarbles) {
                 count = 5;
             } else {
                 count = turnStart + remMarbles;;
             }
+            // Loop to add one marble to each hole on the bottom row
             let $hole = document.querySelectorAll('.player_2.hole');
             for (i = turnStart + 1; i <= count; i++) {
                 player2Marbles++;
@@ -105,8 +117,8 @@ $(() => {
             player1Marbles++;
             remMarbles--;
             document.querySelector(".player_1.well").textContent ++;
-            let $wellMarbles = document.querySelector(".player_1.well").textContent;
-            console.log("Player 1's well:", $wellMarbles);
+            $wellMarbles1 = document.querySelector(".player_1.well").textContent;
+            console.log("Player 1's well:", $wellMarbles1);
             moveSecondRowOfMarbles();
         } // Player 2's turn
         else if (remMarbles > 0 && playerTurn % 2 == 0) {
@@ -114,8 +126,8 @@ $(() => {
             player2Marbles++;
             remMarbles--;
             document.querySelector(".player_2.well").textContent ++;
-            let $wellMarbles = document.querySelector(".player_2.well").textContent;
-            console.log("Player 2's well:", $wellMarbles);
+            $wellMarbles2 = document.querySelector(".player_2.well").textContent;
+            console.log("Player 2's well:", $wellMarbles2);
             moveSecondRowOfMarbles();
         } else {
             // Do nothing
@@ -193,8 +205,26 @@ $(() => {
         };
         marblesToWells()
     };
-
-
+// See if Player 1 holes are all empty
+let player1Holes = () => {
+    for (i = 0; i < $('.player_1.hole').length; i++) {
+        if ($('player_1.hole').text() == "0") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+};
+// See if Player 2 holes are all empty
+let player2Holes = () => {
+    for (i = 0; i < $('.player_2.hole').length; i++) {
+        if ($('player_2.hole').text() == "0") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+};
 
     ////////////////////////////
     // Game Play
@@ -231,7 +261,7 @@ $(() => {
     };
     let wholeGame = () => {
         // While neither player has 0 or less marbles
-        while (remarbles >= 0) {
+        //while (player1Holes() || player2Holes()) {
             // If player count is odd it is player 1's turn
             if (playerTurn % 2 != 0) {
                 document.getElementById('announcement').innerHTML = '<h3>Player 1</h3>';
@@ -254,18 +284,18 @@ $(() => {
                 playerTurn ++;
             };
         } // If Player 1 has the most marbles they win
-        if (player1Marbles > player2Marbles) {
+        if ($wellMarbles1 > $wellMarbles2) {
             // Sweet Alert syntax
             swal("WINNER!", "Player 1, You Win!", "success");
             console.log("Player 1 wins");
-        } else if (player2Marbles > player1Marbles) {
+        } else if ($wellMarbles2 > $wellMarbles1) {
             swal("WINNER!", "Player 2, You Win!", "success");
             console.log("Player 2 wins");
         } else {
             swal("Tie!", "It is a tie!", "success");
             console.log("Players drew a tie");
         };
-    };
+   };
     ////////////////////////////
     // End or play again
     ////////////////////////////
@@ -302,5 +332,6 @@ $(() => {
     //////////////////////////////
     // Events
     //////////////////////////////
-    welcome();
+    welcome(); 
+    
 })
