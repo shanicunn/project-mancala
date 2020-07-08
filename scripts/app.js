@@ -261,7 +261,7 @@ let player2Holes = () => {
     };
     let wholeGame = () => {
         // While neither player has 0 or less marbles
-        while (player1Holes() || player2Holes()) {
+        //while (player1Holes() || player2Holes()) {
             // If player count is odd it is player 1's turn
             if (playerTurn % 2 != 0) {
                 document.getElementById('announcement').innerHTML = '<h3>Player 1</h3>';
