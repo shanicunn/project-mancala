@@ -40,3 +40,7 @@ Animations onclick of holes
 * 7/5 -   Add clicks to all holes
 * 7/6 -   
 
+### Technical Issues
+* Clicked holes set to 0 - Resolved by Jordan Meister 8/27
+* Player condition
+* Playing condition
