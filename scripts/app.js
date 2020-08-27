@@ -27,34 +27,25 @@ $(() => {
     ////////////////////////////
     // Game Play Functions
     ////////////////////////////
-
+       
     // First Loop of Play
     function start(e) {
         // Store the clicked hole
-        let $clicked = $(e.currentTarget);
+        let $clicked = $(e.target);
         // Log hole clicked
-        console.log($clicked);
+        console.log('clicked ', $clicked);
         // Log current player count
         console.log("Player turn:", playerTurn);
         // Store amount of marbles in hole
         // https://stackoverflow.com/questions/26319183/how-to-get-number-inside-a-div-with-jquery
         remMarbles = parseInt($clicked.children('h3').text());
+        $clicked.children('h3').text("0");
         // Log the remaining marbles not in wells
         console.log("Remaining marbles:", remMarbles);
         // Store the location of the click
         turnStart = $clicked.index();
-        if ($clicked.hasClass('player_1')) {
-            let current = player1Marbles - remMarbles;
-            // Log available marbles for player 1
-            console.log("Player 1 marbles:", current);
-            $("#marbles_1").text("0");
-            // Find amount of marbles in the clicked hole and log
-            remMarbles = parseInt($clicked.children('h3').text());
-            console.log("Marbles in clicked hole:", remMarbles);
-        } else {
-            let current = player2Marbles - remMarbles;
-            console.log("Player 2 marbles:", current);
-        }
+        console.log("Index of clicked hole: ", turnStart);
+       
         moveFirstRowOfMarbles();
     };
     // Move player's row of marbles
